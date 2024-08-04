@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Prod 3",
+		"description": "Producto 3",
+		"code": "3333",
+		"price": 1200,
+		"status": true,
+		"stock": 9,
+		"category": "Sillón Moderno",
+		"id": 4
+	},
+	{
+		"title": "Prod 3",
+		"description": "Producto 3",
+		"code": "3333",
+		"price": 1400,
+		"status": true,
+		"stock": 9,
+		"category": "Sillón Moderno",
+		"id": 5
+	},
+	{
+		"title": "Prod 3",
+		"description": "Producto 3",
+		"code": "3333",
+		"price": 1200,
+		"status": true,
+		"stock": 9,
+		"category": "Sillón Moderno",
+		"id": 6
+	}
+]
