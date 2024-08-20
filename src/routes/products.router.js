@@ -8,7 +8,7 @@ const productsManagerFs = new ProductsManagerFs();
 router.get("/", async (req, res) => {
   try {
     const productsDb = await productsManagerFs.getProducts();
-    res.send({ status: "success", data: productsDb });
+    res.render({ status: "success", data: productsDb });
   } catch (error) {
     console.log(error);
   }

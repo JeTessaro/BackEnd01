@@ -1,0 +1,65 @@
+<h1>Real time products</h1>
+
+    <h2>Formulario de productos</h2>
+
+<section class="container mt-5 w-100 d-flex justify-content-center align-items-center mb-5">    
+    <form id="product-form" class="forma-control" >
+        <imput type="text" name="title" class="forma-control" placeholder="Ingrese el nombre del producto">
+        <imput type="text" name="thumbnail" class="forma-control" placeholder="Ingrese la imagen del producto">    
+        <imput type="text" name="descripcion" class="forma-control" placeholder="Ingrese la descripcion del producto">
+        <imput type="text" name="price" class="forma-control" placeholder="Ingrese el precio del producto">
+        <imput type="text" name="stock" class="forma-control" placeholder="Ingrese el stock del producto">
+        <button class="btn btn-outline-dark">Enviar</button>
+    </form>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    socket.on('productsList, data => {
+    //console.log(data)
+        const productListDiv = document.querySelector('#product-list');
+    let html = ''
+
+    data.forEach(product => {
+        html += '
+            < div class='col-md-4 mb-4' >
+                <div class='card'>
+                    <img src='${product.thumbnail}' class='card-img-top' alt='${product.name}'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>Nombre: ${product.name}</h5>
+                            <p class='card-text'>Descripción: ${product.description}</p>
+                            <p class='card-text'>Stock: ${product.stock}</p>
+                            <p class='card-text'>Precio: $${product.price}</p>
+                            <button id='eliminar-producto' class='btn btn-outline-dark w-100' onclick='elminar producto(${product.id})'>Eliminar</button>
+                        </div>
+                </div>
+</div >
+            '     
+    })
+
+    productListDiv.innerHTML = html 
+
+    })
+
+    let form = document.querySelector('#product-form')
+
+    from.addEventListener('submit', evt => {
+        evt.preventDefault()
+        const title = form.elements.title.value
+        const price = form.elements.price.value
+        const description = form.elements.description.value
+        const stock = form.elements.stock.value
+        const thumbnail = form.elements.thumbnail.value
+
+        socket.emit('addProduct', {
+            title,
+            price: Number(price),
+            description, 
+            stock: parseInt(stock), 
+            thumbnail
+        })
+        form.reset()
+    })
+</script>>
